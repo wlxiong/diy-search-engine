@@ -65,20 +65,20 @@ def main():
     print "tf partitions"
     for i, partition in enumerate(tf_partitions):
         print len(partition)
-        dump = open("tf-%03d.dump" % (i + 1,), 'w')
+        dump = open("tf-%03d.dump" % (i + 1,), 'wb')
         pickle.dump(partition, dump, 2)
     print "doc partitions"
     for i, partition in enumerate(doc_partitions):
         print len(partition)
-        dump = open("doc-%03d.dump" % (i + 1,), 'w')
+        dump = open("doc-%03d.dump" % (i + 1,), 'wb')
         pickle.dump(partition, dump, 2)
     print "global df"
     df = compute_df(tf_partitions)
-    df["_doc_count_"] = len(pages)
+    df["_doc_count_"] = len(pages) * 1.0
     sorted_df = sorted(df.items(), key=lambda t: t[1])
     print sorted_df[:10]
     print sorted_df[-10:]
-    dump = open("df.dump", 'w')
+    dump = open("df.dump", 'wb')
     pickle.dump(df, dump, 2)
 
 if __name__ == "__main__":
