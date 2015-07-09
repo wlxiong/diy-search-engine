@@ -59,7 +59,7 @@ def main():
         dp = docid % len(doc_server)
         print ip, dp, docid, title, bytes
         tf_partitions[ip][docid] = compute_tf(tokenize_doc(text.text))
-        doc_partitions[dp][docid] = text.text
+        doc_partitions[dp][docid] = {"title": title, "text": text.text}
 
     print "docs", len(pages)
     print "tf partitions"
